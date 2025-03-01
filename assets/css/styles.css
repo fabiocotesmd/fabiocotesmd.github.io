@@ -1,15 +1,15 @@
 /* Variables de colores */
 :root {
-    --primary-color: #2c7a62;
-    --secondary-color: #f8f9fa;
-    --accent-color: #1a4a3c;
-    --text-color: #333333;
-    --light-gray: #f5f5f5;
-    --white: #ffffff;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --primary-color: #a8e6cf; /* Verde menta claro */
+    --secondary-color: #e8fdf5; /* Verde menta muy claro */
+    --accent-color: #1b4d3e; /* Verde oscuro para acentos */
+    --text-color: #333333; /* Casi negro para texto */
+    --light-gray: #f5f5f5; /* Gris claro para fondos */
+    --white: #ffffff; /* Blanco */
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-/* Estilos generales */
+/* Reset y estilos generales */
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +30,7 @@ a {
 }
 
 a:hover {
-    color: #205e4b; /* Verde medio para hover */
+    color: #2c7a62; /* Verde medio para hover */
 }
 
 ul {
@@ -167,6 +167,7 @@ main {
     object-fit: cover;
     box-shadow: var(--shadow);
 }
+
 .about-text {
     flex: 2;
     min-width: 300px;
@@ -817,32 +818,3 @@ footer {
         margin-right: 0.5rem;
     }
 }
-
-/* Estilos específicos para Jekyll posts */
-.post {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: var(--white);
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-}
-
-.post-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--primary-color);
-}
-
-.post-title {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
-}
-
-.post-meta {
-    color: #777;
-    font-size: 0.9rem;
-}
-
-.post
