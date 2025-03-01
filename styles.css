@@ -1,0 +1,812 @@
+/* Variables de colores */
+:root {
+    --primary-color: #a8e6cf; /* Verde menta claro */
+    --secondary-color: #e8fdf5; /* Verde menta muy claro */
+    --accent-color: #1b4d3e; /* Verde oscuro para acentos */
+    --text-color: #333333; /* Casi negro para texto */
+    --light-gray: #f5f5f5; /* Gris claro para fondos */
+    --white: #ffffff; /* Blanco */
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2c7a62; /* Verde medio para hover */
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header */
+header {
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 0.2rem;
+}
+
+.logo p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+nav ul li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover:after {
+    width: 100%;
+}
+
+nav ul li a.active {
+    color: var(--accent-color);
+}
+
+nav ul li a.active:after {
+    width: 100%;
+    background-color: var(--accent-color);
+}
+
+/* Main content */
+main {
+    padding: 2rem 5%;
+}
+
+/* Hero section */
+.hero {
+    background-color: var(--primary-color);
+    padding: 4rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-color);
+}
+
+/* About section */
+.about {
+    margin-bottom: 3rem;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-placeholder {
+    width: 250px;
+    height: 250px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.about-text {
+    flex: 2;
+    min-width: 300px;
+}
+
+.about-text h2 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+}
+
+/* Sections preview */
+.sections-preview h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+}
+
+.preview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.card p {
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+/* Footer */
+footer {
+    background-color: var(--white);
+    padding: 2rem 5%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Chatbot icon */
+.chatbot-icon {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.chatbot-icon:hover {
+    transform: scale(1.1);
+    background-color: #2c7a62;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav {
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    nav ul {
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 0.7rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .footer-nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .chatbot-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Estos estilos se deben añadir al archivo styles.css para dar formato a las nuevas páginas */
+
+/* Estilos generales para las páginas de contenido */
+.page-header {
+    background-color: var(--primary-color);
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.page-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-color);
+}
+
+.content-section {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.8rem;
+}
+
+.section-header i {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-right: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.6rem;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+/* Estilos para la página de colegas */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.resource-card {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.resource-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.resource-card h3 {
+    margin-bottom: 0.8rem;
+    color: var(--accent-color);
+}
+
+.resource-card p {
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+}
+
+.community-section {
+    text-align: center;
+    padding: 1rem;
+}
+
+.contact-options {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-btn i {
+    margin-right: 0.5rem;
+}
+
+.contact-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.event-item {
+    display: flex;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.event-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 1rem;
+    min-width: 80px;
+}
+
+.event-date .month {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.event-date .day {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.event-details {
+    padding: 1.2rem;
+}
+
+.event-details h3 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.event-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.8rem;
+}
+
+.event-meta i {
+    margin-right: 0.3rem;
+}
+
+/* Estilos para la página de pacientes */
+.blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.blog-card {
+    display: flex;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.blog-image {
+    flex: 1;
+    min-width: 200px;
+}
+
+.blog-img-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-content {
+    flex: 2;
+    padding: 1.5rem;
+}
+
+.blog-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.blog-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.blog-meta i {
+    margin-right: 0.3rem;
+}
+
+.blog-content p {
+    margin-bottom: 1.2rem;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 1.2rem;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+.faq-toggle {
+    color: var(--accent-color);
+}
+
+.faq-answer {
+    padding: 0 1.2rem 1.2rem;
+    background-color: var(--white);
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.testimonial-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-text {
+    margin-bottom: 1.2rem;
+    font-style: italic;
+}
+
+.testimonial-text p::before {
+    content: '\201C'; /* Comilla izquierda */
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-right: 0.3rem;
+}
+
+.testimonial-text p::after {
+    content: '\201D'; /* Comilla derecha */
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-left: 0.3rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 1rem;
+}
+
+/* Estilos para la página personal */
+.values-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.value-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.value-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.value-card h3 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.gallery-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.photo-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.photo-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: #ddd;
+}
+
+.photo-caption {
+    padding: 0.8rem;
+    background-color: var(--white);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.activities-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.activity-card {
+    display: flex;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.activity-image {
+    flex: 1;
+    min-width: 150px;
+}
+
+.activity-img-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 150px;
+    background-color: #ddd;
+}
+
+.activity-content {
+    flex: 2;
+    padding: 1.5rem;
+}
+
+.activity-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.thoughts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.thought-quote {
+    background-color: var(--secondary-color);
+    border-left: 4px solid var(--accent-color);
+    padding: 1.5rem;
+    margin: 0;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.book-card {
+    text-align: center;
+}
+
+.book-cover {
+    margin-bottom: 1rem;
+}
+
+.book-cover-placeholder {
+    width: 140px;
+    height: 200px;
+    background-color: #ddd;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-card h3 {
+    margin-bottom: 0.3rem;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+.book-author {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.book-description {
+    font-size: 0.9rem;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .blog-card, .activity-card {
+        flex-direction: column;
+    }
+    
+    .blog-img-placeholder, .activity-img-placeholder {
+        min-height: 200px;
+    }
+    
+    .event-item {
+        flex-direction: column;
+    }
+    
+    .event-date {
+        flex-direction: row;
+        padding: 0.5rem;
+    }
+    
+    .event-date .month {
+        margin-right: 0.5rem;
+    }
+}
