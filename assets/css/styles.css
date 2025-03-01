@@ -160,6 +160,13 @@ main {
     box-shadow: var(--shadow);
 }
 
+.profile-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+}
 .about-text {
     flex: 2;
     min-width: 300px;
