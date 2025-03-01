@@ -18,5 +18,9 @@
     {% include footer.html %}
 
     <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+    
+    {% if page.include_faq_script %}
+    <script src="{{ '/assets/js/faq.js' | relative_url }}"></script>
+    {% endif %}
 </body>
 </html>

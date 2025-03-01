@@ -13,22 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Detectar la página actual para la navegación activa
-    const currentPage = window.location.pathname.split('/').pop();
-    const navLinks = document.querySelectorAll('nav ul li a');
-    
-    navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        
-        if (currentPage === linkPage || 
-            (currentPage === '' && linkPage === 'index.html') || 
-            (currentPage === '/' && linkPage === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-    
     // Animación suave al hacer scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

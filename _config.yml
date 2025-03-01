@@ -26,3 +26,14 @@ navigation:
 exclude:
   - CNAME
   - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Configuración adicional
+timezone: America/Santiago
+lang: es-ES

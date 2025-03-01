@@ -810,3 +810,32 @@ footer {
         margin-right: 0.5rem;
     }
 }
+
+/* Estilos específicos para Jekyll posts */
+.post {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.post-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.post-title {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.post-meta {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.post

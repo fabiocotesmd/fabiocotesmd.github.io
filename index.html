@@ -3,97 +3,49 @@ layout: default
 title: Dr. Fabio Cotes - Médico Especialista en Hemodiálisis
 permalink: /
 ---
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Fabio Cotes - Médico Especialista en Hemodiálisis</title>
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <h1>Dr. Fabio Cotes</h1>
-            <p>Médico Especialista en Hemodiálisis</p>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Bienvenidos a mi espacio profesional y personal</h2>
+        <p>Compartiendo conocimiento, experiencias y valores en el ámbito de la salud renal</p>
+    </div>
+</section>
+
+<section class="about">
+    <div class="about-content">
+        <div class="about-image">
+            <!-- Aquí irá tu imagen profesional -->
+            <div class="profile-placeholder"></div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="{{ '/' | relative_url }}" class="active">Inicio</a></li>
-                <li><a href="{{ '/colegas' | relative_url }}">Para Colegas</a></li>
-                <li><a href="{{ '/pacientes' | relative_url }}">Para Pacientes</a></li>
-                <li><a href="{{ '/personal' | relative_url }}">Espacio Personal</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Bienvenidos a mi espacio profesional y personal</h2>
-                <p>Compartiendo conocimiento, experiencias y valores en el ámbito de la salud renal</p>
-            </div>
-        </section>
-
-        <section class="about">
-            <div class="about-content">
-                <div class="about-image">
-                    <!-- Aquí irá tu imagen profesional -->
-                    <div class="profile-placeholder"></div>
-                </div>
-                <div class="about-text">
-                    <h2>Sobre mí</h2>
-                    <p>Soy médico y cirujano graduado en 2011, con 5 años de experiencia especializada en hemodiálisis. Actualmente trabajo como médico residente en el centro de diálisis de Paillaco con VIDADIAL.</p>
-                    <p>Mi pasión se divide entre la atención directa a pacientes con enfermedad renal y el desarrollo de herramientas informáticas que complementen y mejoren la atención en salud.</p>
-                    <p>En este espacio encontrarás recursos profesionales, información para pacientes y un vistazo a mis valores personales: salud, relaciones personales, prosperidad y progreso, libertad y seguridad.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="sections-preview">
-            <h2>Explora las secciones</h2>
-            <div class="preview-cards">
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-user-md"></i></div>
-                    <h3>Para Colegas</h3>
-                    <p>Guías clínicas, protocolos de actuación en hemodiálisis y herramientas profesionales.</p>
-                    <a href="{{ '/colegas' | relative_url }}" class="btn">Explorar</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
-                    <h3>Para Pacientes</h3>
-                    <p>Blog informativo y recursos educativos sobre hemodiálisis y cuidado de la salud renal.</p>
-                    <a href="{{ '/pacientes' | relative_url }}" class="btn">Explorar</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-home"></i></div>
-                    <h3>Espacio Personal</h3>
-                    <p>Fotografías, actividades y reflexiones sobre mis valores personales.</p>
-                    <a href="{{ '/personal' | relative_url }}" class="btn">Explorar</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <p>&copy; 2025 Dr. Fabio Cotes - Todos los derechos reservados</p>
-            </div>
-            <div class="footer-nav">
-                <a href="{{ '/' | relative_url }}">Inicio</a>
-                <a href="{{ '/colegas' | relative_url }}">Para Colegas</a>
-                <a href="{{ '/pacientes' | relative_url }}">Para Pacientes</a>
-                <a href="{{ '/personal' | relative_url }}">Espacio Personal</a>
-            </div>
+        <div class="about-text">
+            <h2>Sobre mí</h2>
+            <p>Soy médico y cirujano graduado en 2011, con 5 años de experiencia especializada en hemodiálisis. Actualmente trabajo como médico residente en el centro de diálisis de Paillaco con VIDADIAL.</p>
+            <p>Mi pasión se divide entre la atención directa a pacientes con enfermedad renal y el desarrollo de herramientas informáticas que complementen y mejoren la atención en salud.</p>
+            <p>En este espacio encontrarás recursos profesionales, información para pacientes y un vistazo a mis valores personales: salud, relaciones personales, prosperidad y progreso, libertad y seguridad.</p>
         </div>
-        <!-- Ícono para futuro chatbot -->
-        <div class="chatbot-icon">
-            <i class="fas fa-comments"></i>
-        </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
-</body>
-</html>
+<section class="sections-preview">
+    <h2>Explora las secciones</h2>
+    <div class="preview-cards">
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-user-md"></i></div>
+            <h3>Para Colegas</h3>
+            <p>Guías clínicas, protocolos de actuación en hemodiálisis y herramientas profesionales.</p>
+            <a href="{{ '/colegas' | relative_url }}" class="btn">Explorar</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
+            <h3>Para Pacientes</h3>
+            <p>Blog informativo y recursos educativos sobre hemodiálisis y cuidado de la salud renal.</p>
+            <a href="{{ '/pacientes' | relative_url }}" class="btn">Explorar</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-home"></i></div>
+            <h3>Espacio Personal</h3>
+            <p>Fotografías, actividades y reflexiones sobre mis valores personales.</p>
+            <a href="{{ '/personal' | relative_url }}" class="btn">Explorar</a>
+        </div>
+    </div>
+</section>
