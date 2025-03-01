@@ -1,10 +1,15 @@
+---
+layout: default
+title: Dr. Fabio Cotes - Médico Especialista en Hemodiálisis
+permalink: /
+---
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Colegas - Dr. Fabio Cotes</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -15,10 +20,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="colegas.html" class="active">Para Colegas</a></li>
-                <li><a href="pacientes.html">Para Pacientes</a></li>
-                <li><a href="personal.html">Espacio Personal</a></li>
+                <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+                <li><a href="{{ '/colegas' | relative_url }}" class="active">Para Colegas</a></li>
+                <li><a href="{{ '/pacientes' | relative_url }}">Para Pacientes</a></li>
+                <li><a href="{{ '/personal' | relative_url }}">Espacio Personal</a></li>
             </ul>
         </nav>
     </header>
@@ -135,10 +140,10 @@
                 <p>&copy; 2025 Dr. Fabio Cotes - Todos los derechos reservados</p>
             </div>
             <div class="footer-nav">
-                <a href="index.html">Inicio</a>
-                <a href="colegas.html">Para Colegas</a>
-                <a href="pacientes.html">Para Pacientes</a>
-                <a href="personal.html">Espacio Personal</a>
+                <a href="{{ '/' | relative_url }}">Inicio</a>
+                <a href="{{ '/colegas' | relative_url }}">Para Colegas</a>
+                <a href="{{ '/pacientes' | relative_url }}">Para Pacientes</a>
+                <a href="{{ '/personal' | relative_url }}">Espacio Personal</a>
             </div>
         </div>
         <!-- Ícono para futuro chatbot -->
@@ -147,6 +152,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
 </body>
 </html>

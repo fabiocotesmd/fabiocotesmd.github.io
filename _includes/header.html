@@ -1,0 +1,13 @@
+<header>
+    <div class="logo">
+        <h1>Dr. Fabio Cotes</h1>
+        <p>Médico Especialista en Hemodiálisis</p>
+    </div>
+    <nav>
+        <ul>
+            {% for item in site.navigation %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>

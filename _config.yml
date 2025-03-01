@@ -1,0 +1,28 @@
+# Información del sitio
+title: Dr. Fabio Cotes
+description: Médico Especialista en Hemodiálisis
+baseurl: "" # Si tu sitio está en un subdirectorio, escríbelo aquí
+url: "https://fabiocotes.github.io" # URL de tu sitio
+
+# Configuración de compilación
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Configuración de navegación
+navigation:
+  - title: Inicio
+    url: /
+  - title: Para Colegas
+    url: /colegas/
+  - title: Para Pacientes
+    url: /pacientes/
+  - title: Espacio Personal
+    url: /personal/
+
+# Excluir archivos y carpetas
+exclude:
+  - CNAME
+  - README.md
