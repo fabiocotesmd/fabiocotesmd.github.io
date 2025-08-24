@@ -1,0 +1,14 @@
+/* Copia aquí todo el bloque <style> de dosificacion-medicamentos.html */
+.calculator-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+/* ...resto del CSS del bloque <style>... */
+@media (max-width: 768px) {
+    .form-row, .form-row-three {
+        grid-template-columns: 1fr;
+    }
+    .drug-table {
+        font-size: 0.9rem;
+    }
+}
