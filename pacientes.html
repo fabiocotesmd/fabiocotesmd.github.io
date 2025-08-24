@@ -19,7 +19,11 @@ include_faq_script: true
         {% for post in site.posts limit:3 %}
         <article class="blog-card">
             <div class="blog-image">
+                {% if post.image %}
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                {% else %}
                 <!-- Placeholder para imagen del blog -->
+                {% endif %}
                 <div class="blog-img-placeholder"></div>
             </div>
             <div class="blog-content">
