@@ -2,6 +2,7 @@
 layout: post
 title: "Cuidados del acceso vascular en casa"
 date: 2025-01-10
+image: /assets/images/blogs/cuidados-acceso-vascular.webp
 categories: cuidados
 ---
 

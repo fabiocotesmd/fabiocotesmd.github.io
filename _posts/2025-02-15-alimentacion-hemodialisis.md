@@ -2,6 +2,7 @@
 layout: post
 title: "Alimentación saludable en hemodiálisis"
 date: 2025-02-15
+image: /assets/images/blogs/alimentacion-hemodialisis.webp
 categories: nutricion
 ---
 

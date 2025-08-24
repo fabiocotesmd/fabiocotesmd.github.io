@@ -2,6 +2,7 @@
 layout: post
 title: "Manejo de la sed durante el tratamiento"
 date: 2025-01-28
+image: /assets/images/blogs/manejo-sed-hemodialisis.webp
 categories: cuidados
 ---
 
