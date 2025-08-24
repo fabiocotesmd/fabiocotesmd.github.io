@@ -140,41 +140,6 @@
         </section>
 
         <div class="calculator-container">
-            <section class="theory-section">
-                <div class="section-header">
-                    <i class="fas fa-info-circle"></i>
-                    <h2>Fundamento teórico</h2>
-                </div>
-                <p><strong>KT/V</strong> es un parámetro que mide la dosis de diálisis administrada a un paciente. Representa la fracción del volumen de distribución de la urea que ha sido depurada durante una sesión de hemodiálisis.</p>
-                
-                <h3>Componentes:</h3>
-                <ul style="list-style-type: disc; margin-left: 2rem; margin-top: 1rem;">
-                    <li><strong>K:</strong> Clearance de urea del dializador (ml/min)</li>
-                    <li><strong>T:</strong> Tiempo de diálisis (minutos)</li>
-                    <li><strong>V:</strong> Volumen de distribución de la urea (ml)</li>
-                </ul>
-
-                <h3>Fórmula de Daugirdas (Segunda generación):</h3>
-                <div style="background-color: var(--secondary-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center; font-weight: bold;">
-                    KT/V = -ln(R - 0.008 × t) + (4 - 3.5 × R) × UF/P
-                </div>
-                
-                <p><strong>Donde:</strong></p>
-                <ul style="list-style-type: disc; margin-left: 2rem;">
-                    <li><strong>R:</strong> Razón de reducción de urea (URR) = Urea post / Urea pre</li>
-                    <li><strong>t:</strong> Tiempo de sesión en horas</li>
-                    <li><strong>UF:</strong> Volumen de ultrafiltración (litros)</li>
-                    <li><strong>P:</strong> Peso post-diálisis (kg)</li>
-                    <li><strong>ln:</strong> Logaritmo natural</li>
-                </ul>
-
-                <h3>Valores objetivo:</h3>
-                <ul style="list-style-type: disc; margin-left: 2rem;">
-                    <li><strong>KT/V ≥ 1.2:</strong> Adecuado para hemodiálisis tres veces por semana</li>
-                    <li><strong>KT/V < 1.2:</strong> Inadecuado, requiere ajuste de prescripción</li>
-                </ul>
-            </section>
-
             <section class="content-section">
                 <div class="section-header">
                     <i class="fas fa-calculator"></i>
@@ -232,6 +197,41 @@
                         <p id="interpretation-text">-</p>
                     </div>
                 </div>
+            </section>
+
+            <section class="theory-section">
+                <div class="section-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>Fundamento teórico</h2>
+                </div>
+                <p><strong>KT/V</strong> es un parámetro que mide la dosis de diálisis administrada a un paciente. Representa la fracción del volumen de distribución de la urea que ha sido depurada durante una sesión de hemodiálisis.</p>
+                
+                <h3>Componentes:</h3>
+                <ul style="list-style-type: disc; margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>K:</strong> Clearance de urea del dializador (ml/min)</li>
+                    <li><strong>T:</strong> Tiempo de diálisis (minutos)</li>
+                    <li><strong>V:</strong> Volumen de distribución de la urea (ml)</li>
+                </ul>
+
+                <h3>Fórmula de Daugirdas (Segunda generación):</h3>
+                <div style="background-color: var(--secondary-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center; font-weight: bold;">
+                    KT/V = -ln(R - 0.008 × t) + (4 - 3.5 × R) × UF/P
+                </div>
+                
+                <p><strong>Donde:</strong></p>
+                <ul style="list-style-type: disc; margin-left: 2rem;">
+                    <li><strong>R:</strong> Razón de reducción de urea (URR) = Urea post / Urea pre</li>
+                    <li><strong>t:</strong> Tiempo de sesión en horas</li>
+                    <li><strong>UF:</strong> Volumen de ultrafiltración (litros)</li>
+                    <li><strong>P:</strong> Peso post-diálisis (kg)</li>
+                    <li><strong>ln:</strong> Logaritmo natural</li>
+                </ul>
+
+                <h3>Valores objetivo:</h3>
+                <ul style="list-style-type: disc; margin-left: 2rem;">
+                    <li><strong>KT/V ≥ 1.2:</strong> Adecuado para hemodiálisis tres veces por semana</li>
+                    <li><strong>KT/V < 1.2:</strong> Inadecuado, requiere ajuste de prescripción</li>
+                </ul>
             </section>
         </div>
     </main>
