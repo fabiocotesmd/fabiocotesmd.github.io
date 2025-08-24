@@ -18,7 +18,7 @@ include_faq_script: true
     <div class="blog-posts">
         {% for post in site.posts limit:3 %}
         <article class="blog-card">
-            <div class="blog-image" style="width:120px; height:120px; display:flex; align-items:center; justify-content:center; border-radius:8px; overflow:hidden;">
+            <div class="blog-image" style="width:120px; height:120px; display:flex; align-items:center; justify-content:center; border-radius:8px; overflow:hidden; margin-right:24px;">
                 {% if post.image %}
                 <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" style="width:100%; height:100%; object-fit:cover;">
                 {% else %}
