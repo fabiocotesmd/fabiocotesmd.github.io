@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Balance Hídrico - Dr. Fabio Cotes</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .calculator-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--accent-color);
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-row-three {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 1rem 0;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #2c7a62;
+        }
+        
+        .results-section {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        
+        .theory-section {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .recommendations {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #856404;
+        }
+        
+        .danger {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #721c24;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #155724;
+        }
+        
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .parameter-table th, .parameter-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .parameter-table th {
+            background-color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row, .form-row-three {
+                grid-template-columns: 1fr;
+            }
+            
+            .parameter-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Dr. Fabio Cotes</h1>
+            <p>Médico y Cirujano, Hemodialista</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../colegas.html" class="active">Para Colegas</a></li>
+                <li><a href="../pacientes.html">Para Pacientes</a></li>
+                <li><a href="../personal.html">Espacio Personal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Calculadora de Balance Hídrico</h1>
+            <p>Estimación del peso seco y cálculo de ultrafiltración en hemodiálisis</p>
+        </section>
+
+        <div class="calculator-container">
+            <section class="theory-section">
+                <div class="section-header">
+                    <i class="fas fa-tint"></i>
+                    <h2>Fundamento teórico</h2>
+                </div>
+                <p>El balance hídrico es fundamental en el manejo de pacientes en hemodiálisis. La determinación correcta del <strong>peso seco</strong> y el cálculo preciso de la <strong>ultrafiltración</strong> son aspectos críticos para la seguridad y eficacia del tratamiento.</p>
+                
+                <h3>Conceptos clave:</h3>
+                <ul style="list-style-type: disc; margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Peso seco:</strong> Peso del paciente sin exceso de líquidos, determinado clínicamente</li>
+                    <li><strong>Ganancia interdialítica:</strong> Peso actual - peso seco</li>
+                    <li><strong>Ultrafiltración (UF):</strong> Volumen de líquido a remover durante la sesión</li>
+                    <li><strong>Tasa de UF:</strong> Velocidad de remoción de líquido (ml/kg/hora)</li>
+                </ul>
+
+                <h3>Parámetros de seguridad:</h3>
+                <table class="parameter-table">
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Valor seguro</th>
+                            <th>Precaución</th>
+                            <th>Alto riesgo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tasa de UF</td>
+                            <td>&lt;10 ml/kg/h</td>
+                            <td>10-13 ml/kg/h</td>
+                            <td>&gt;13 ml/kg/h</td>
+                        </tr>
+                        <tr>
+                            <td>Ganancia interdialítica</td>
+                            <td>&lt;2.5% peso seco</td>
+                            <td>2.5-4% peso seco</td>
+                            <td>&gt;4% peso seco</td>
+                        </tr>
+                        <tr>
+                            <td>UF total</td>
+                            <td>&lt;3 litros</td>
+                            <td>3-4 litros</td>
+                            <td>&gt;4 litros</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Fórmulas utilizadas:</h3>
+                <div style="background-color: var(--secondary-color); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <p><strong>Ultrafiltración total = Peso actual - Peso seco</strong></p>
+                    <p><strong>Tasa de UF = (UF total × 1000) / (Peso seco × Tiempo de sesión)</strong></p>
+                    <p><strong>% Ganancia = (UF total / Peso seco) × 100</strong></p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-calculator"></i>
+                    <h2>Calculadora</h2>
+                </div>
+                
+                <form id="balanceCalculator">
+                    <h3>Datos del paciente:</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="peso-actual">Peso pre-diálisis actual (kg):</label>
+                            <input type="number" id="peso-actual" step="0.1" min="30" max="200" placeholder="Ej: 72.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="peso-seco">Peso seco estimado (kg):</label>
+                            <input type="number" id="peso-seco" step="0.1" min="30" max="200" placeholder="Ej: 70.0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tiempo-sesion">Tiempo de sesión (horas):</label>
+                            <input type="number" id="tiempo-sesion" step="0.1" min="2" max="8" placeholder="Ej: 4.0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ultrafiltacion-adicional">UF adicional deseada (litros):</label>
+                            <input type="number" id="ultrafiltacion-adicional" step="0.1" min="0" max="2" value="0" placeholder="Ej: 0.5">
+                            <small style="color: #666; font-size: 0.9em;">Para balance negativo (opcional)</small>
+                        </div>
+                    </div>
+
+                    <h3>Datos adicionales (opcionales):</h3>
+                    
+                    <div class="form-row-three">
+                        <div class="form-group">
+                            <label for="presion-sistolica">Presión sistólica (mmHg):</label>
+                            <input type="number" id="presion-sistolica" min="80" max="250" placeholder="Ej: 140">
+                        </div>
+                        <div class="form-group">
+                            <label for="presion-diastolica">Presión diastólica (mmHg):</label>
+                            <input type="number" id="presion-diastolica" min="40" max="150" placeholder="Ej: 90">
+                        </div>
+                        <div class="form-group">
+                            <label for="edema">Presencia de edema:</label>
+                            <select id="edema">
+                                <option value="">No especificado</option>
+                                <option value="ausente">Ausente</option>
+                                <option value="leve">Leve</option>
+                                <option value="moderado">Moderado</option>
+                                <option value="severo">Severo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="calculate-btn">
+                        <i class="fas fa-calculator"></i> Calcular Balance Hídrico
+                    </button>
+                </form>
+
+                <div id="results" class="results-section">
+                    <h3><i class="fas fa-chart-line"></i> Resultados del cálculo</h3>
+                    
+                    <div class="result-item">
+                        <span>Ganancia interdialítica:</span>
+                        <span class="result-value" id="ganancia-value">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Ultrafiltración total requerida:</span>
+                        <span class="result-value" id="uf-total-value">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Tasa de ultrafiltración:</span>
+                        <span class="result-value" id="tasa-uf-value">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Porcentaje de ganancia:</span>
+                        <span class="result-value" id="porcentaje-value">-</span>
+                    </div>
+
+                    <div id="recommendations" class="recommendations">
+                        <h4><i class="fas fa-stethoscope"></i> Evaluación y recomendaciones</h4>
+                        <div id="recommendation-content">-</div>
+                    </div>
+
+                    <div id="safety-alerts" class="warning">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Consideraciones de seguridad</h4>
+                        <div id="safety-content">-</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 Dr. Fabio Cotes - Todos los derechos reservados</p>
+            </div>
+            <div class="footer-nav">
+                <a href="../index.html">Inicio</a>
+                <a href="../colegas.html">Para Colegas</a>
+                <a href="../pacientes.html">Para Pacientes</a>
+                <a href="../personal.html">Espacio Personal</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('balanceCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const pesoActual = parseFloat(document.getElementById('peso-actual').value);
+            const pesoSeco = parseFloat(document.getElementById('peso-seco').value);
+            const tiempoSesion = parseFloat(document.getElementById('tiempo-sesion').value);
+            const ufAdicional = parseFloat(document.getElementById('ultrafiltacion-adicional').value) || 0;
+            const presionSistolica = parseInt(document.getElementById('presion-sistolica').value) || null;
+            const presionDiastolica = parseInt(document.getElementById('presion-diastolica').value) || null;
+            const edema = document.getElementById('edema').value;
+            
+            // Validaciones básicas
+            if (pesoActual <= pesoSeco) {
+                alert('El peso actual debe ser mayor al peso seco para requerir ultrafiltración');
+                return;
+            }
+            
+            if (tiempoSesion < 2) {
+                alert('El tiempo de sesión debe ser al menos 2 horas');
+                return;
+            }
+            
+            // Cálculos principales
+            const gananciaInterdial = pesoActual - pesoSeco;
+            const ufTotal = gananciaInterdial + ufAdicional;
+            const tasaUF = (ufTotal * 1000) / (pesoSeco * tiempoSesion); // ml/kg/h
+            const porcentajeGanancia = (gananciaInterdial / pesoSeco) * 100;
+            
+            // Mostrar resultados
+            document.getElementById('ganancia-value').textContent = gananciaInterdial.toFixed(2) + ' kg';
+            document.getElementById('uf-total-value').textContent = ufTotal.toFixed(2) + ' L';
+            document.getElementById('tasa-uf-value').textContent = tasaUF.toFixed(1) + ' ml/kg/h';
+            document.getElementById('porcentaje-value').textContent = porcentajeGanancia.toFixed(1) + '%';
+            
+            // Evaluación de riesgo y recomendaciones
+            let riskLevel = 'low';
+            let recommendations = [];
+            let safetyAlerts = [];
+            
+            // Evaluación de tasa de UF
+            if (tasaUF > 13) {
+                riskLevel = 'high';
+                recommendations.push('⚠️ <strong>Tasa de UF muy alta</strong>: Considerar aumentar el tiempo de sesión o dividir la UF en múltiples sesiones.');
+                safetyAlerts.push('Riesgo elevado de hipotensión, calambres y síndrome de desequilibrio');
+            } else if (tasaUF > 10) {
+                riskLevel = Math.max(riskLevel, 'medium');
+                recommendations.push('⚡ <strong>Tasa de UF elevada</strong>: Monitoreo estrecho durante la sesión. Considerar perfil de UF.');
+                safetyAlerts.push('Monitoreo frecuente de signos vitales recomendado');
+            } else {
+                recommendations.push('✅ <strong>Tasa de UF segura</strong>: Dentro de parámetros recomendados.');
+            }
+            
+            // Evaluación de porcentaje de ganancia
+            if (porcentajeGanancia > 4) {
+                riskLevel = 'high';
+                recommendations.push('📊 <strong>Ganancia interdialítica excesiva</strong>: Reforzar educación sobre restricción hídrica.');
+                safetyAlerts.push('Considerar reevaluación del peso seco y manejo nutricional');
+            } else if (porcentajeGanancia > 2.5) {
+                riskLevel = Math.max(riskLevel, 'medium');
+                recommendations.push('📈 <strong>Ganancia interdialítica moderada</strong>: Revisar adherencia a restricciones hídricas.');
+            } else {
+                recommendations.push('✅ <strong>Ganancia interdialítica adecuada</strong>: Buen control del paciente.');
+            }
+            
+            // Evaluación de UF total
+            if (ufTotal > 4) {
+                riskLevel = 'high';
+                recommendations.push('💧 <strong>Volumen de UF muy elevado</strong>: Considerar sesiones más frecuentes o más prolongadas.');
+            } else if (ufTotal > 3) {
+                riskLevel = Math.max(riskLevel, 'medium');
+                recommendations.push('💧 <strong>Volumen de UF elevado</strong>: Vigilar tolerancia hemodinámica.');
+            }
+            
+            // Consideraciones adicionales basadas en datos clínicos
+            if (presionSistolica && presionSistolica < 110) {
+                recommendations.push('🩺 <strong>Presión arterial baja</strong>: Considerar reducir la tasa de UF o revisar peso seco.');
+                safetyAlerts.push('Riesgo aumentado de hipotensión intradialítica');
+            }
+            
+            if (presionSistolica && presionSistolica > 160) {
+                recommendations.push('🩺 <strong>Hipertensión</strong>: El peso seco podría estar sobreestimado. Considerar evaluación.');
+            }
+            
+            if (edema === 'moderado' || edema === 'severo') {
+                recommendations.push('🦵 <strong>Presencia de edema significativo</strong>: El peso seco requiere reevaluación hacia abajo.');
+                safetyAlerts.push('Probable sobrehidratación - ajustar peso seco');
+            }
+            
+            // Aplicar estilos según nivel de riesgo
+            const recommendationsDiv = document.getElementById('recommendations');
+            const safetyDiv = document.getElementById('safety-alerts');
+            
+            if (riskLevel === 'high') {
+                recommendationsDiv.className = 'recommendations danger';
+                safetyDiv.className = 'danger';
+            } else if (riskLevel === 'medium') {
+                recommendationsDiv.className = 'recommendations warning';
+                safetyDiv.className = 'warning';
+            } else {
+                recommendationsDiv.className = 'recommendations success';
+                safetyDiv.className = 'success';
+            }
+            
+            // Mostrar recomendaciones
+            document.getElementById('recommendation-content').innerHTML = recommendations.join('<br><br>');
+            
+            // Mostrar alertas de seguridad
+            if (safetyAlerts.length > 0) {
+                document.getElementById('safety-content').innerHTML = safetyAlerts.join('<br><br>');
+            } else {
+                document.getElementById('safety-content').innerHTML = 'No se identificaron alertas de seguridad específicas con los parámetros actuales.';
+            }
+            
+            // Mostrar sección de resultados
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

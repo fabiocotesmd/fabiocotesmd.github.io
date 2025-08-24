@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosificación de Medicamentos en ERC - Dr. Fabio Cotes</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .calculator-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--accent-color);
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-row-three {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 1rem 0;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #2c7a62;
+        }
+        
+        .results-section {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        
+        .theory-section {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .drug-info {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #856404;
+        }
+        
+        .drug-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .drug-table th, .drug-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .drug-table th {
+            background-color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row, .form-row-three {
+                grid-template-columns: 1fr;
+            }
+            
+            .drug-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Dr. Fabio Cotes</h1>
+            <p>Médico y Cirujano, Hemodialista</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../colegas.html" class="active">Para Colegas</a></li>
+                <li><a href="../pacientes.html">Para Pacientes</a></li>
+                <li><a href="../personal.html">Espacio Personal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Dosificación de Medicamentos en ERC</h1>
+            <p>Ajuste de dosis según función renal y clearance de creatinina</p>
+        </section>
+
+        <div class="calculator-container">
+            <section class="theory-section">
+                <div class="section-header">
+                    <i class="fas fa-pills"></i>
+                    <h2>Fundamento teórico</h2>
+                </div>
+                <p>La enfermedad renal crónica afecta significativamente la eliminación de muchos medicamentos. El ajuste de dosis es crucial para:</p>
+                
+                <ul style="list-style-type: disc; margin-left: 2rem; margin-top: 1rem;">
+                    <li>Prevenir toxicidad por acumulación del fármaco</li>
+                    <li>Mantener eficacia terapéutica</li>
+                    <li>Minimizar efectos adversos</li>
+                    <li>Optimizar la seguridad del paciente</li>
+                </ul>
+
+                <h3>Cálculo del Clearance de Creatinina (Cockcroft-Gault):</h3>
+                <div style="background-color: var(--secondary-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;">
+                    <strong>ClCr = [(140 - edad) × peso] / (72 × creatinina sérica)</strong><br>
+                    <em>× 0.85 si es mujer</em>
+                </div>
+                
+                <h3>Clasificación de la función renal:</h3>
+                <table class="drug-table" style="margin-top: 1rem;">
+                    <thead>
+                        <tr>
+                            <th>Estadio</th>
+                            <th>ClCr (ml/min)</th>
+                            <th>Función</th>
+                            <th>Ajuste necesario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>I</td>
+                            <td>≥90</td>
+                            <td>Normal</td>
+                            <td>No requiere</td>
+                        </tr>
+                        <tr>
+                            <td>II</td>
+                            <td>60-89</td>
+                            <td>Leve ↓</td>
+                            <td>Monitoreo</td>
+                        </tr>
+                        <tr>
+                            <td>IIIa</td>
+                            <td>45-59</td>
+                            <td>Moderada ↓</td>
+                            <td>Posible ajuste</td>
+                        </tr>
+                        <tr>
+                            <td>IIIb</td>
+                            <td>30-44</td>
+                            <td>Moderada-severa ↓</td>
+                            <td>Ajuste requerido</td>
+                        </tr>
+                        <tr>
+                            <td>IV</td>
+                            <td>15-29</td>
+                            <td>Severa ↓</td>
+                            <td>Ajuste significativo</td>
+                        </tr>
+                        <tr>
+                            <td>V</td>
+                            <td>&lt;15</td>
+                            <td>Falla renal</td>
+                            <td>Diálisis/contraindicado</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-calculator"></i>
+                    <h2>Calculadora</h2>
+                </div>
+                
+                <form id="dosageCalculator">
+                    <h3>Datos del paciente:</h3>
+                    
+                    <div class="form-row-three">
+                        <div class="form-group">
+                            <label for="edad">Edad (años):</label>
+                            <input type="number" id="edad" min="18" max="120" placeholder="Ej: 65" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso (kg):</label>
+                            <input type="number" id="peso" step="0.1" min="30" max="200" placeholder="Ej: 70" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexo">Sexo:</label>
+                            <select id="sexo" required>
+                                <option value="">Seleccionar</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="creatinina">Creatinina sérica (mg/dL):</label>
+                        <input type="number" id="creatinina" step="0.01" min="0.1" max="20" placeholder="Ej: 2.5" required>
+                    </div>
+
+                    <h3>Medicamento:</h3>
+                    
+                    <div class="form-group">
+                        <label for="medicamento">Seleccionar medicamento:</label>
+                        <select id="medicamento" required>
+                            <option value="">Seleccionar medicamento</option>
+                            <optgroup label="Antibióticos">
+                                <option value="amoxicilina">Amoxicilina</option>
+                                <option value="ciprofloxacino">Ciprofloxacino</option>
+                                <option value="vancomicina">Vancomicina</option>
+                                <option value="gentamicina">Gentamicina</option>
+                            </optgroup>
+                            <optgroup label="Cardiovasculares">
+                                <option value="digoxina">Digoxina</option>
+                                <option value="atenolol">Atenolol</option>
+                                <option value="enalapril">Enalapril</option>
+                            </optgroup>
+                            <optgroup label="Otros">
+                                <option value="allopurinol">Allopurinol</option>
+                                <option value="gabapentina">Gabapentina</option>
+                                <option value="metformina">Metformina</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="calculate-btn">
+                        <i class="fas fa-calculator"></i> Calcular Dosis Ajustada
+                    </button>
+                </form>
+
+                <div id="results" class="results-section">
+                    <h3><i class="fas fa-chart-line"></i> Resultados</h3>
+                    
+                    <div class="result-item">
+                        <span>Clearance de Creatinina:</span>
+                        <span class="result-value" id="clcr-value">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Estadio de ERC:</span>
+                        <span class="result-value" id="stage-value">-</span>
+                    </div>
+                    
+                    <div id="drug-info" class="drug-info">
+                        <h4><i class="fas fa-pills"></i> Información del medicamento</h4>
+                        <div id="drug-details">-</div>
+                    </div>
+
+                    <div class="warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Importante:</strong> Estas recomendaciones son orientativas. Siempre consulte la ficha técnica del medicamento, considere las características individuales del paciente y monitoree niveles séricos cuando sea apropiado.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 Dr. Fabio Cotes - Todos los derechos reservados</p>
+            </div>
+            <div class="footer-nav">
+                <a href="../index.html">Inicio</a>
+                <a href="../colegas.html">Para Colegas</a>
+                <a href="../pacientes.html">Para Pacientes</a>
+                <a href="../personal.html">Espacio Personal</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Base de datos de medicamentos y ajustes de dosis
+        const medicamentos = {
+            amoxicilina: {
+                nombre: "Amoxicilina",
+                dosisNormal: "500-1000 mg cada 8 horas",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 25-50%",
+                    "15-30": "Reducir dosis 50% o extender intervalo",
+                    "<15": "250-500 mg cada 12-24 horas"
+                },
+                monitoreo: "Función renal, signos de sobredosis"
+            },
+            ciprofloxacino: {
+                nombre: "Ciprofloxacino",
+                dosisNormal: "250-750 mg cada 12 horas",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 25%",
+                    "15-30": "Reducir dosis 50%",
+                    "<15": "Usar con extrema precaución"
+                },
+                monitoreo: "Función renal, niveles de magnesio"
+            },
+            vancomicina: {
+                nombre: "Vancomicina",
+                dosisNormal: "15-20 mg/kg cada 8-12 horas",
+                ajustes: {
+                    "≥60": "Monitoreo de niveles",
+                    "30-60": "Ajustar según niveles séricos",
+                    "15-30": "Extender intervalo significativamente",
+                    "<15": "Usar solo con monitoreo estrecho"
+                },
+                monitoreo: "Niveles séricos (valle 15-20 µg/ml), ototoxicidad, nefrotoxicidad"
+            },
+            gentamicina: {
+                nombre: "Gentamicina",
+                dosisNormal: "3-5 mg/kg/día dividido cada 8 horas",
+                ajustes: {
+                    "≥60": "Monitoreo de niveles",
+                    "30-60": "Reducir dosis o extender intervalo",
+                    "15-30": "Evitar si es posible",
+                    "<15": "Contraindicado"
+                },
+                monitoreo: "Niveles séricos, ototoxicidad, nefrotoxicidad"
+            },
+            digoxina: {
+                nombre: "Digoxina",
+                dosisNormal: "0.125-0.25 mg/día",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 25%",
+                    "15-30": "Reducir dosis 50%",
+                    "<15": "0.0625 mg cada 48 horas"
+                },
+                monitoreo: "Niveles séricos (0.8-2.0 ng/ml), ECG, potasio sérico"
+            },
+            atenolol: {
+                nombre: "Atenolol",
+                dosisNormal: "25-100 mg/día",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 50%",
+                    "15-30": "Reducir dosis 75%",
+                    "<15": "Usar con extrema precaución"
+                },
+                monitoreo: "Presión arterial, frecuencia cardíaca"
+            },
+            enalapril: {
+                nombre: "Enalapril",
+                dosisNormal: "5-20 mg dos veces al día",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 25%",
+                    "15-30": "Iniciar con dosis bajas",
+                    "<15": "Contraindicado en algunos casos"
+                },
+                monitoreo: "Función renal, potasio sérico, presión arterial"
+            },
+            allopurinol: {
+                nombre: "Allopurinol",
+                dosisNormal: "100-300 mg/día",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 33%",
+                    "15-30": "Reducir dosis 50%",
+                    "<15": "100 mg cada 48 horas"
+                },
+                monitoreo: "Ácido úrico sérico, función hepática"
+            },
+            gabapentina: {
+                nombre: "Gabapentina",
+                dosisNormal: "300-1200 mg tres veces al día",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Reducir dosis 25-50%",
+                    "15-30": "Reducir dosis 50-75%",
+                    "<15": "100-300 mg/día"
+                },
+                monitoreo: "Función neurológica, sedación"
+            },
+            metformina: {
+                nombre: "Metformina",
+                dosisNormal: "500-1000 mg dos veces al día",
+                ajustes: {
+                    "≥60": "No ajuste necesario",
+                    "30-60": "Usar con precaución",
+                    "15-30": "Contraindicado",
+                    "<15": "Contraindicado"
+                },
+                monitoreo: "Función renal, lactato sérico, pH"
+            }
+        };
+
+        function calcularClCr(edad, peso, sexo, creatinina) {
+            let clcr = ((140 - edad) * peso) / (72 * creatinina);
+            if (sexo === 'femenino') {
+                clcr *= 0.85;
+            }
+            return clcr;
+        }
+
+        function determinarEstadio(clcr) {
+            if (clcr >= 90) return "I (Normal)";
+            if (clcr >= 60) return "II (Leve ↓)";
+            if (clcr >= 45) return "IIIa (Moderada ↓)";
+            if (clcr >= 30) return "IIIb (Moderada-severa ↓)";
+            if (clcr >= 15) return "IV (Severa ↓)";
+            return "V (Falla renal)";
+        }
+
+        function obtenerAjuste(clcr) {
+            if (clcr >= 60) return "≥60";
+            if (clcr >= 30) return "30-60";
+            if (clcr >= 15) return "15-30";
+            return "<15";
+        }
+
+        document.getElementById('dosageCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const edad = parseInt(document.getElementById('edad').value);
+            const peso = parseFloat(document.getElementById('peso').value);
+            const sexo = document.getElementById('sexo').value;
+            const creatinina = parseFloat(document.getElementById('creatinina').value);
+            const medicamentoSeleccionado = document.getElementById('medicamento').value;
+            
+            // Validaciones
+            if (!medicamentoSeleccionado) {
+                alert('Por favor seleccione un medicamento');
+                return;
+            }
+            
+            // Calcular ClCr
+            const clcr = calcularClCr(edad, peso, sexo, creatinina);
+            const estadio = determinarEstadio(clcr);
+            const rangoAjuste = obtenerAjuste(clcr);
+            
+            // Obtener información del medicamento
+            const medicamento = medicamentos[medicamentoSeleccionado];
+            const ajusteRecomendado = medicamento.ajustes[rangoAjuste];
+            
+            // Mostrar resultados
+            document.getElementById('clcr-value').textContent = clcr.toFixed(1) + ' ml/min';
+            document.getElementById('stage-value').textContent = estadio;
+            
+            // Información del medicamento
+            const drugDetails = document.getElementById('drug-details');
+            drugDetails.innerHTML = `
+                <h5>${medicamento.nombre}</h5>
+                <p><strong>Dosis normal:</strong> ${medicamento.dosisNormal}</p>
+                <p><strong>Ajuste recomendado (ClCr ${rangoAjuste} ml/min):</strong> ${ajusteRecomendado}</p>
+                <p><strong>Monitoreo requerido:</strong> ${medicamento.monitoreo}</p>
+            `;
+            
+            // Mostrar sección de resultados
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
